@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const roleSchema = new mongoose.Schema({
     userId:{
-        type: String,
+        type: Number,
         required: true,
         unique: true
     },
@@ -19,6 +19,8 @@ const roleSchema = new mongoose.Schema({
         required: true
     }
 })
+
+roleSchema.plugin(AutoIncrement, { inc_field: 'userId' });
 
 const Role = mongoose.model("Role", roleSchema)
 

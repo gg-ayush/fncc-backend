@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const shopSchema = new mongoose.Schema({
     shopId: {
-        type: String,
+        type: Number,
         required: true,
         unique:true
     },
@@ -39,6 +39,8 @@ const shopSchema = new mongoose.Schema({
         required: true
     }
 })
+
+shopSchema.plugin(AutoIncrement, { inc_field: 'shopId' });
 
 const Shop = mongoose.model("Shop", shopSchema)
 

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
-
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const distributorSchema = new mongoose.Schema({
     dist_id: {
-        type:String,
+        type:Number,
         required: true,
-        unique: true
+        unique: true,
     },
     distributorName: {
         type: String,
@@ -22,10 +22,10 @@ const distributorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    distributor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Distributor',
-    },
+    // distributor: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Distributor',
+    // },
     distributorInventory: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
@@ -39,6 +39,8 @@ const distributorSchema = new mongoose.Schema({
         required: true
     }
 })
+
+distributorSchema.plugin(AutoIncrement, { inc_field: 'dist_id' });
 
 const Distributor = mongoose.model("Distributor", distributorSchema)
 
