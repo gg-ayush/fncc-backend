@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const distributorSchema = new mongoose.Schema({
+    dist_id: {
+        type:String,
+        required: true,
+        unique: true
+    },
     distributorName: {
         type: String,
         required: true
@@ -13,13 +18,17 @@ const distributorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    distributorkeyPerson: {
+    keyPerson: {
         type: String,
         required: true
     },
+    distributor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Distributor',
+    },
     distributorInventory: {
-        type: Array,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
     },
     location: {
         type: String,
@@ -31,6 +40,6 @@ const distributorSchema = new mongoose.Schema({
     }
 })
 
-const Distributor = mongoose.model("distributor", distributorSchema)
+const Distributor = mongoose.model("Distributor", distributorSchema)
 
 module.exports = Distributor

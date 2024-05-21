@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const companySchema = new mongoose.Schema({
+    org_id: {
+        type: String,
+        required: true,
+        unique: true
+    },
     orgName: {
         type: String,
         required: true
@@ -18,16 +23,16 @@ const companySchema = new mongoose.Schema({
         required: false
     },
     distributor: {
-        type: Array,
-        required: false
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Distributor',
     },
     inventory: {
-        type: Array,
-        required: false
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
     },
     salesCompany: {
-        type: Array,
-        required: false
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Sales',
     },
     password: {
         type: String,

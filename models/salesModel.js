@@ -1,19 +1,22 @@
 const mongoose = require('mongoose')
 
 const salesSchema = new mongoose.Schema({
+    salesId: {
+        type: String,
+        required: true,
+        unique:true
+    },
     orgId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Company',
+        type: String,
         required: true
     },
     disId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Distributor',
+        type: String,
         required: true
     },
     orders: {
-        type: Array,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
     },
     value: {
         type: Number,
@@ -29,6 +32,6 @@ const salesSchema = new mongoose.Schema({
     }
 })
 
-const Sales = mongoose.model("sales", userSchema)
+const Sales = mongoose.model("Sales", userSchema)
 
 module.exports = Sales

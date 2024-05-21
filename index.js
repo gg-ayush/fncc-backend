@@ -30,3 +30,4 @@ app.get('/test', (req, res) => {
 })
 
 app.use('/api/company', require('./routes/companyRoutes')) //Company Routes
+app.use('/api/distributor', require('./routes/distributorRoutes')) //Company Routes

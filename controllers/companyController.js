@@ -19,7 +19,9 @@ const jwt = require('jsonwebtoken');
         try {
             // Existing Company
             const duplicateCompany = await getCompany(primaryEmail);
+
             if(duplicateCompany) {
+                
                 return res.json({
                 success: false,
                 message: `Company with email: ${primaryEmail} already exists.`

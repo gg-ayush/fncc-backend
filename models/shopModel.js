@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const shopSchema = new mongoose.Schema({
+    shopId: {
+        type: String,
+        required: true,
+        unique:true
+    },
     shopName: {
         type: String,
         required: true
@@ -18,12 +23,12 @@ const shopSchema = new mongoose.Schema({
         required: true
     },
     distributor: {
-        type: Array,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Distributor'
     },
     distributorInventory: {
-        type: Array,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
     },
     location: {
         type: String,
@@ -35,6 +40,6 @@ const shopSchema = new mongoose.Schema({
     }
 })
 
-const Shop = mongoose.model("shop", shopSchema)
+const Shop = mongoose.model("Shop", shopSchema)
 
 module.exports = Shop

@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const companyController = require('../controllers/companyController.js')
 
-// Make a create user API
+// Make a create company API
 router.post('/create-company', 
     companyController.createCompany
 )
