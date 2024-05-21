@@ -48,7 +48,7 @@ const jwt = require('jsonwebtoken');
      * @returns company
      */
     const getCompany = async (companyEmail) => {
-        return await user.findOne({primaryEmail: companyEmail});
+        return await company.findOne({primaryEmail: companyEmail});
     }
 
     /**
